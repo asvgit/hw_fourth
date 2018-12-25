@@ -5,10 +5,10 @@ before_script:
   - sudo apt-get -y install gcc-7 g++-7 libboost-test-dev
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 1
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 1
-script:
-  - cmake .
-  - cmake --build .
-  - cmake --build . --target package
+# script:
+  # - cmake .
+  # - cmake --build .
+  # - cmake --build . --target package
 deploy:
   provider: pages
   skip_cleanup: true
@@ -16,6 +16,8 @@ deploy:
   keep-history: true
   on:
     branch: master
+  script:
+  - doxygen
 # deploy:
 #   provider: script
 #   skip_cleanup: true
