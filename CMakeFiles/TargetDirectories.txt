@@ -1,9 +1,0 @@
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/install/strip.dir
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/install/local.dir
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/install.dir
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/list_install_components.dir
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/rebuild_cache.dir
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/package.dir
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/package_source.dir
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/print_ip.dir
-/home/travis/build/asvgit/hw_fourth/CMakeFiles/edit_cache.dir
