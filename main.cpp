@@ -11,12 +11,17 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <tuple>
+#include <type_traits>
 
 /// @private
 template <typename T>
 struct is_cont {
 	static const bool value = false;
 };
+/// @private
+template< class T >
+inline constexpr bool is_cont_v = is_cont<T>::value;
 
 /// @private
 template <typename T,typename Alloc>
@@ -31,7 +36,7 @@ struct is_cont<std::list<T, Alloc>> {
 };
 
 /// @private
-template <typename T, class = typename std::enable_if<is_cont<T>::value>::type>
+template <typename T, class = typename std::enable_if_t<is_cont_v<T>>>
 void print(const T& v) {
 	for(const auto &ip_part : v) {
 		if (&ip_part != &v.front())
@@ -43,7 +48,7 @@ void print(const T& v) {
 
 /// @private
 template <typename T>
-typename std::enable_if<std::is_integral<T>::value, T>::type print(const T &val) {
+typename std::enable_if_t<std::is_integral_v<T>, T> print(const T &val) {
 	for (int i = sizeof(T); i > 0; --i) {
 		if (i != sizeof(T))
 			std::cout << '.';
@@ -52,6 +57,17 @@ typename std::enable_if<std::is_integral<T>::value, T>::type print(const T &val)
 	std::cout << std::endl;
 	return val;
 }
+
+// /// @private
+// template <typename T>
+// void print(const std::tuple<T, T, T, T> &val) {
+//     for (int i = sizeof(T); i > 0; --i) {
+//         if (i != sizeof(T))
+//             std::cout << '.';
+//         std::cout << +((val >> (8 * (i - 1))) & 0xFF);
+//     }
+//     std::cout << std::endl;
+// }
 
 /// @private
 void print(const std::string &val) {
@@ -68,6 +84,7 @@ int main() {
 		print(std::string("192.168.0.1"));
 		print(std::vector<int>{172, 31, 0, 1});
 		print(std::list<int>{8, 8, 8, 8});
+		// print(std::make_tuple(8, 8, 8, 8, 8));
 	} catch(const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
