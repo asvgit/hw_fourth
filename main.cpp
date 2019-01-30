@@ -58,15 +58,10 @@ typename std::enable_if_t<std::is_integral_v<T>, T> print(const T &val) {
 	return val;
 }
 
-// /// @private
-// template <typename T>
-// void print(const std::tuple<T, T, T, T> &val) {
-//     for (int i = sizeof(T); i > 0; --i) {
-//         if (i != sizeof(T))
-//             std::cout << '.';
-//         std::cout << +((val >> (8 * (i - 1))) & 0xFF);
-//     }
-//     std::cout << std::endl;
+/// @private
+// template <typename... Args>
+// void print(const std::tuple<Args...> &tuple) {
+//     std::cout << std::tuple_size_v<std::tuple<Args...>> << std::endl;
 // }
 
 /// @private
